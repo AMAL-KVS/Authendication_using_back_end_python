@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mixer_sample/model/user_model.dart';
 
 class ScreenLogin extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -55,12 +56,13 @@ class ScreenLogin extends StatelessWidget {
                     // Validate returns true if the form is valid, or false
                     // otherwise.
                     if (_formKey.currentState!.validate()) {
-                      // If the form is valid, display a Snackbar.
-                      Scaffold.of(context).showBottomSheet(
-                          (context) => Text('Processing Data'));
+                      UserModel().submitForm(
+                          emailController.text, passwordController.text);
+                      // Scaffold.of(context).showBottomSheet(
+                      //     (context) => const Text('Processing Data'));
                     }
                   },
-                  child: Text('Submit'),
+                  child: const Text('Submit'),
                 ),
               ),
             ],
